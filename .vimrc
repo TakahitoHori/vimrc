@@ -15,6 +15,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'tomasr/molokai'
 " インデントの可視化
 NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'Yggdroot/indentLine'
 " ファイルツリー
 NeoBundle 'scrooloose/nerdtree'
 " git管理
@@ -26,6 +27,8 @@ NeoBundle 'tomtom/tcomment_vim'
 " スニペット
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
+" pep8に自動的にインデント
+NeoBundle 'Vimjas/vim-python-pep8-indent'
 call neobundle#end()
 filetype plugin indent on     " Required!
 
@@ -81,7 +84,7 @@ nnoremap k gk
 
 " Tab系
 " 不可視文字を可視化(タブが「▸-」と表示される)
-set list listchars=tab:\▸\-
+" set list listchars=tab:\▸\-
 " Tab文字を半角スペースにする
 set expandtab
 " 行頭以外のTab文字の表示幅（スペースいくつ分）
@@ -107,6 +110,16 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 " 対応カッコに飛ぶ
 set showmatch
 set matchtime=1
+
+" vimmerにあるまじきマウス設定
+set mouse=a
+set ttymouse=xterm2
+
+" 無限アンドゥ
+if has('persistent_undo')
+	set undodir=~/.vim/undo
+	set undofile
+endif
 
 " vimとOSのクリップボードを連携
 set clipboard+=unnamed
