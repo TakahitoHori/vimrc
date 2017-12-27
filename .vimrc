@@ -35,6 +35,10 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'tpope/vim-surround'
 " HTML 
 NeoBundle 'mattn/emmet-vim'
+" vue
+NeoBundle 'Shougo/context_filetype.vim'
+NeoBundle 'osyo-manga/vim-precious'
+
 call neobundle#end()
 filetype plugin indent on     " Required!
 
@@ -131,6 +135,9 @@ endif
 
 " vimとOSのクリップボードを連携
 set clipboard+=unnamed
+
+" vueシンタックスハイライト
+autocmd BufNewFile,BufRead *.vue set filetype=html
 
 " カラースキーマをMolokaiへ
 colorscheme molokai
