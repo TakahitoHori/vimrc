@@ -25,10 +25,16 @@ NeoBundle 'itchyny/lightline.vim'
 " コメントアウト
 NeoBundle 'tomtom/tcomment_vim'
 " スニペット
-NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet'
 " pep8に自動的にインデント
 NeoBundle 'Vimjas/vim-python-pep8-indent'
+" Javascript
+NeoBundle 'pangloss/vim-javascript'
+" かっこつけ
+NeoBundle 'tpope/vim-surround'
+" HTML 
+NeoBundle 'mattn/emmet-vim'
 call neobundle#end()
 filetype plugin indent on     " Required!
 
@@ -81,6 +87,8 @@ set wildmode=list:longest
 nnoremap j gj
 nnoremap k gk
 
+noremap!  <C-H>
+
 
 " Tab系
 " 不可視文字を可視化(タブが「▸-」と表示される)
@@ -126,6 +134,7 @@ set clipboard+=unnamed
 
 " カラースキーマをMolokaiへ
 colorscheme molokai
+set t_Co=256
 if &term == "xterm-256color"
     colorscheme molokai
     hi Comment ctermfg=102
