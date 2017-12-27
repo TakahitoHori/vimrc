@@ -37,6 +37,8 @@ NeoBundle 'mattn/emmet-vim'
 " vue
 NeoBundle 'Shougo/context_filetype.vim'
 NeoBundle 'osyo-manga/vim-precious'
+" 便利バインドプラグイン
+NeoBundle 'kana/vim-submode'
 
 call neobundle#end()
 filetype plugin indent on     " Required!
@@ -89,6 +91,43 @@ set wildmode=list:longest
 " 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
 nnoremap k gk
+
+" タブ関係のバインド
+nnoremap s <Nop>
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sL <C-w>L
+nnoremap sH <C-w>H
+nnoremap sn gt
+nnoremap sp gT
+nnoremap sr <C-w>r
+nnoremap s= <C-w>=
+nnoremap sw <C-w>w
+nnoremap so <C-w>_<C-w>|
+nnoremap sO <C-w>=
+nnoremap sN :<C-u>bn<CR>
+nnoremap sP :<C-u>bp<CR>
+nnoremap st :<C-u>tabnew<CR>
+nnoremap sT :<C-u>Unite tab<CR>
+nnoremap ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+nnoremap sq :<C-u>q<CR>
+nnoremap sQ :<C-u>bd<CR>
+nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
+nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
+
+call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+call submode#map('bufmove', 'n', '', '<', '<C-w><')
+call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 
 noremap!  <C-H>
 
@@ -214,3 +253,32 @@ endfunction
 function! LightlineMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
+
+" NERDTree
+" let g:NERDTreeShowBookmarks=1
+autocmd vimenter * NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable  = '▶'
+let g:NERDTreeDirArrowCollapsible = '▼'
+
+" NERDTress File highlighting
+
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+   exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+    exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+  endfunction
+  call NERDTreeHighlightFile('py',     'yellow',  'none', 'yellow',  '#151515')
+  call NERDTreeHighlightFile('md',     'blue',    'none', '#3366FF', '#151515')
+  call NERDTreeHighlightFile('yml',    'yellow',  'none', 'yellow',  '#151515')
+  call NERDTreeHighlightFile('config', 'yellow',  'none', 'yellow',  '#151515')
+  call NERDTreeHighlightFile('conf',   'yellow',  'none', 'yellow',  '#151515')
+  call NERDTreeHighlightFile('json',   'yellow',  'none', 'yellow',  '#151515')
+  call NERDTreeHighlightFile('html',   'yellow',  'none', 'yellow',  '#151515')
+  call NERDTreeHighlightFile('styl',   'cyan',    'none', 'cyan',    '#151515')
+  call NERDTreeHighlightFile('css',    'cyan',    'none', 'cyan',    '#151515')
+  call NERDTreeHighlightFile('rb',     'Red',     'none', 'red',     '#151515')
+  call NERDTreeHighlightFile('js',     'Red',     'none', '#ffa500', '#151515')
+  call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', '#151515')
+
