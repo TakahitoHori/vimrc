@@ -26,7 +26,6 @@ NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'tomtom/tcomment_vim'
 " スニペット
 NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/neosnippet'
 " pep8に自動的にインデント
 NeoBundle 'Vimjas/vim-python-pep8-indent'
 " Javascript
